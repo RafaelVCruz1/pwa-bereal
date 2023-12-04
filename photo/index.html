@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografe - BeReal</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="theme-color" content="white" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="apple-touch-icon" href="../images/icon-256_ios.png">
+    <link rel="icon" href="../images/icon-256.png" sizes="256x256" />
+</head>
+<body id="bereal">
+    <header>
+        <span id="logo-text">BeReal.</span>
+    </header>
+    <!-- Camera -->
+    <main id="camera">
+        <!-- Camera sensor (lente) -->
+        <canvas id="camera--sensor"></canvas>
+        <!-- Camera view (visualização) -->
+        <video id="camera--view" autoplay playsinline></video>
+        <!-- Camera output -->
+        <img src="//:0" alt="" id="camera--output">
+        <!-- Camera botão de tirar foto -->
+        <div class="button-container">
+            <button class="camera-virar" id="camera--test"> <i class="fas fa-bolt"></i></button>
+            <button class="camera-button" id="camera--trigger"></button>
+            <button class="camera-virar" id="camera--switch"><i class="fas fa-sync-alt"></i></button>
+        </div>
+    </main>
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>
