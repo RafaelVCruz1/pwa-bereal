@@ -19,7 +19,8 @@ const cameraView = document.querySelector("#camera--view"),
   cameraOutput = document.querySelector("#camera--output"),
   cameraSensor = document.querySelector("#camera--sensor"),
   cameraTrigger = document.querySelector("#camera--trigger"),
-  cameraSwitch = document.querySelector("#camera--switch");
+  cameraSwitch = document.querySelector("#camera--switch"),
+  cameraList = document.querySelector("#camera--test");
 
 let db; 
 
