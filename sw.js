@@ -4,7 +4,6 @@ import { registerRoute, Route } from 'workbox-routing';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 
-// configurando o cache
 const pageCache = new CacheFirst({
   cacheName: 'PWA- BeReal',
   plugins: [
@@ -17,16 +16,14 @@ const pageCache = new CacheFirst({
   ],
 });
 
-//indicando o cache de página
 warmStrategyCache({
   urls: ['/index.html', '/', '/photo/index.html'],
   strategy: pageCache,
 });
 
-//registrando a rota
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-registerRoute(// configurando cache de assets
+registerRoute(
   ({ request }) => ['style', 'script', 'worker']
     .includes(request.destination),
   new StaleWhileRevalidate({
@@ -39,7 +36,7 @@ registerRoute(// configurando cache de assets
   }),
 );
 
-offlineFallback({// configurando offline fallback
+offlineFallback({
   pageFallback: '/offline.html',
 });
 

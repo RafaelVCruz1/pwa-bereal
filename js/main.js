@@ -1,4 +1,3 @@
-// Registrando a service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
@@ -7,26 +6,23 @@ if ("serviceWorker" in navigator) {
         type: "module",
       });
 
-      console.log("Service worker registrada! 😎", reg);
+      console.log("Service worker registrada!", reg);
     } catch (err) {
-      console.log("😥 Service worker registro falhou: ", err);
+      console.log("Service worker registro falhou: ", err);
     }
   });
 }
 
 var camMode = "user";
-// Configurando as constraints do video stream
 var constraints = { video: { facingMode: camMode }, audio: false };
-// Capturando os elementos em tela
 const cameraView = document.querySelector("#camera--view"),
   cameraOutput = document.querySelector("#camera--output"),
   cameraSensor = document.querySelector("#camera--sensor"),
   cameraTrigger = document.querySelector("#camera--trigger"),
   cameraSwitch = document.querySelector("#camera--switch");
 
-let db; // Adicionando a variável db para armazenar o objeto do banco de dados
+let db; 
 
-// Estabelecendo o acesso à câmera e inicializando a visualização
 function cameraStart() {
   navigator.mediaDevices
     .getUserMedia(constraints)
@@ -53,7 +49,6 @@ function stopMediaTracks(stream) {
   });
 }
 
-// Função para tirar foto e armazenar no IndexedDB
 cameraTrigger.onclick = function () {
   cameraSensor.width = cameraView.videoWidth;
   cameraSensor.height = cameraView.videoHeight;
@@ -62,17 +57,14 @@ cameraTrigger.onclick = function () {
   cameraOutput.src = imageUrl;
   cameraOutput.classList.add("taken");
 
-  // Armazenar a imagem no IndexedDB
   saveImageToDb(imageUrl);
 };
 
-// Função para iniciar a câmera e o IndexedDB quando a janela carregar
 window.addEventListener("load", () => {
   cameraStart();
   initDb();
 }, false);
 
-// Função para inicializar o IndexedDB
 function initDb() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('Banco BeReal', 1);
@@ -96,10 +88,8 @@ function initDb() {
   });
 }
 
-// Função para salvar a imagem no IndexedDB
 async function saveImageToDb(imageUrl) {
   try {
-    // Verifique se db está definido antes de continuar
     if (!db) {
       console.error("Banco de dados não inicializado corretamente.");
       return;
